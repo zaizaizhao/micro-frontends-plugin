@@ -1,0 +1,3 @@
+//! name和url会变，需要用watch监听
+
+//! vue.use使用 ----类似vuex,vue-router,组件注册
