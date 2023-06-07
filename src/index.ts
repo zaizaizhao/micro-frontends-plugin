@@ -1,5 +1,13 @@
-import { PropType, defineComponent, getCurrentInstance, h, onBeforeUnmount, onMounted, watch } from "vue";
-import { startApp,bus } from "wujie";
+import {
+  PropType,
+  defineComponent,
+  getCurrentInstance,
+  h,
+  onBeforeUnmount,
+  onMounted,
+  watch,
+} from "vue";
+import { startApp, bus } from "wujie";
 import { Props } from "./type";
 
 const Wujie = defineComponent({
@@ -51,7 +59,7 @@ const Wujie = defineComponent({
       default: null,
     },
   },
-  setup(props,{emit}) {
+  setup(props, { emit }) {
     const instance = getCurrentInstance();
     const init = () => {
       startApp({
@@ -79,32 +87,32 @@ const Wujie = defineComponent({
       });
     };
     //! name和url会变，需要用watch监听
-    watch([props.name,props.url],() => {
-        init()
-    })
+    watch([props.name, props.url], () => {
+      init();
+    });
 
-    const handlerEmit = (event:string,...args:any[]) => {
-        emit(event,...args)
-    }
+    const handlerEmit = (event: string, ...args: any[]) => {
+      emit(event, ...args);
+    };
     onMounted(() => {
-        bus.$onAll(handlerEmit);
-        init();
-    })
+      bus.$onAll(handlerEmit);
+      init();
+    });
     onBeforeUnmount(() => {
-        bus.$offAll(handlerEmit);
-    })
+      bus.$offAll(handlerEmit);
+    });
     return () =>
       h("div", {
         style: {
-            width:props.width,
-            height:props.height
+          width: props.width,
+          height: props.height,
         },
         ref: "wujie",
       });
   },
 });
 //! vue.use使用 ----类似vuex,vue-router,组件注册
-Wujie.install = function (app:any) {
-    app.component("WujieVue",Wujie)
-}
-export default Wujie
+Wujie.install = function (app: any) {
+  app.component("WujieVue", Wujie);
+};
+export default Wujie;

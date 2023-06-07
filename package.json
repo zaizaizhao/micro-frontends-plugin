@@ -1,14 +1,19 @@
 {
-  "name": "micro-frontends-plugin",
+  "name": "wujie-vue-tini",
   "version": "0.0.1",
   "description": "",
   "main": "lib/index.js",
-  "module":"esm/index.js",
+  "module": "esm/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "esm":"swc src/index.ts -d esm"
+    "esm": "swc src/index.ts -d esm"
   },
+  "files": [
+    "esm",
+    "lib",
+    "index.d.ts"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
